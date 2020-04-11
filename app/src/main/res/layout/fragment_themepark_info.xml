@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ezplay.buyer.ThemeParkInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/custom_navbar"
+            layout="@layout/user_navbar"
+            tools:layout_editor_absoluteX="-9dp"
+            tools:layout_editor_absoluteY="153dp" />
+
+        <ImageView
+            android:id="@+id/themeparkImageView"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/backgroundColor"
+            android:src="@drawable/upload_image"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.22" />
+
+        <TextView
+            android:id="@+id/generalInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Theme Park Info"
+            android:textColor="@color/colorBar"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeparkImageView"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <ImageButton
+            android:id="@+id/addToFavouriteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
+            android:src="@drawable/add_to_favourite_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeparkImageView"
+            app:layout_constraintVertical_bias="0.005" />
+
+        <TextView
+            android:id="@+id/themeparkNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBar"
+            android:textSize="18dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/generalInfo"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <TextView
+            android:id="@+id/themeparkBusinessHourTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBar"
+            android:textSize="18dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeparkNameTextView"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <TextView
+            android:id="@+id/themeparkAdultPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBar"
+            android:textSize="18dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeparkBusinessHourTextView"
+            app:layout_constraintVertical_bias="0.09" />
+
+        <TextView
+            android:id="@+id/themeparkChildPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBar"
+            android:textSize="18dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/themeparkAdultPriceTextView"
+            app:layout_constraintVertical_bias="0.12" />
+
+        <ImageButton
+            android:id="@+id/bookNowButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/book_button"
+            android:background="@color/backgroundColor"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

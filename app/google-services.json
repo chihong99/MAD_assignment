@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "794417981206",
+    "firebase_url": "https://ezplay-75496.firebaseio.com",
+    "project_id": "ezplay-75496",
+    "storage_bucket": "ezplay-75496.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794417981206:android:a8ab32aed36229fcd59237",
+        "android_client_info": {
+          "package_name": "com.example.ezplay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794417981206-6ct5p0s9gv9e08s2mqcuh7sr8pncha37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ezplay",
+            "certificate_hash": "1a2b9c0137b425b602c6ac1c39e84c715ea5f250"
+          }
+        },
+        {
+          "client_id": "794417981206-n7d8ai00urr6nvvfmnval1mq246heoso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhS3x6kOEUQV7414tOHiazTCanLWuS7xQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794417981206-n7d8ai00urr6nvvfmnval1mq246heoso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

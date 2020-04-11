@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ezplay.vendor.ThemeParkFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/themeparkConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include android:id="@+id/custom_navbar" layout="@layout/user_navbar" />
+
+        <ImageView
+            android:id="@+id/uploadImageView"
+            android:layout_width="320dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="90dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/backgroundColor"
+            android:src="@drawable/upload_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/themeparkInfoTemplate"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="325dp"
+            android:background="@color/backgroundColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/backgroundColor">
+
+                <TextView
+                    android:id="@+id/templateHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Theme Park Info"
+                    android:textColor="@color/colorBar"
+                    android:textStyle="bold"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/themeparkNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBar"
+                    android:text="Theme Park Name: "
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/themeparkBusinessHourTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBar"
+                    android:text="Business Hours: "
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/themeparkAdultPriceTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBar"
+                    android:text="Adults Price: RM0.00"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/themeparkChildPriceTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBar"
+                    android:text="Child Price: RM0.00"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/themeparkInfoEditTemplate"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="325dp"
+            android:background="@color/backgroundColor"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/backgroundColor">
+
+                <TextView
+                    android:id="@+id/templateEditHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Theme Park Info"
+                    android:textColor="@color/colorBar"
+                    android:textStyle="bold"
+                    android:textSize="24dp" />
+
+                <EditText
+                    android:id="@+id/themeparkNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:textColor="@color/colorBar"
+                    android:layout_marginTop="3dp"
+                    android:hint="Theme Park Name"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/themeparkBusinessHourEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:textColor="@color/colorBar"
+                    android:hint="Business Hours"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/themeparkAdultPriceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:textColor="@color/colorBar"
+                    android:hint="Adult Price"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/edittext_border" />
+
+                <EditText
+                    android:id="@+id/themeparkChildPriceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="16"
+                    android:textColor="@color/colorBar"
+                    android:hint="Child Price"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="18dp"
+                    android:background="@drawable/edittext_border" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/editButton"
+            style="@style/SellerThemeParkButton"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:text="Edit"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
+            app:layout_constraintVertical_bias="0.842" />
+
+        <Button
+            android:id="@+id/updateButton"
+            style="@style/SellerThemeParkButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:text="Update"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/custom_navbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.84" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            style="@style/SellerThemeParkButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:text="Cancel"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/custom_navbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.84" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

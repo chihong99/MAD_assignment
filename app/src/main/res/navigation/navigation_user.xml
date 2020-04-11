@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_user"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.ezplay.buyer.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment"
+            app:popUpTo="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_settingsFragment"
+            app:destination="@id/settingsStaffFragment"
+            app:popUpTo="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_themeParkInfoFragment"
+            app:destination="@id/themeParkInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.ezplay.buyer.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_favouriteFragment_to_settingsFragment"
+            app:destination="@id/settingsStaffFragment"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsStaffFragment"
+        android:name="com.example.ezplay.buyer.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingsFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/themeParkInfoFragment"
+        android:name="com.example.ezplay.buyer.ThemeParkInfoFragment"
+        android:label="fragment_themepark_info"
+        tools:layout="@layout/fragment_themepark_info">
+        <argument
+            android:name="selectedThemePark"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_themeParkInfoFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popUpTo="@id/themeParkInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.example.ezplay.buyer.BookingFragment"
+        android:label="fragment_booking" >
+        <argument
+            android:name="selectedThemeParkID"
+            app:argType="string" />
+    </fragment>
+</navigation>

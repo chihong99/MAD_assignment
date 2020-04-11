@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EZPLAY</string>
+    <string name="login">Login</string>
+    <string name="forgetPwd">Lost your password?</string>
+    <string name="register">Don\'t have an account? Sign up here!</string>
+    <string name="signup">Register</string>
+    <string name="customer">Register as Customer</string>
+    <string name="seller">Register as Seller</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

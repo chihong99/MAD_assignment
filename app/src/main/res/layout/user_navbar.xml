@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:background="@color/colorBar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/userNavbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            app:srcCompat="?attr/homeAsUpIndicator" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:paddingRight="60dp"
+            app:srcCompat="@drawable/ezplay_logo" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/userNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@color/colorBar"
+            android:layout_marginStart="50dp"
+            app:srcCompat="@drawable/navbar_search" />
+
+        <ImageButton
+            android:id="@+id/favouriteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/colorBar"
+            app:srcCompat="@drawable/navbar_favourite" />
+
+        <ImageButton
+            android:id="@+id/settingsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@color/colorBar"
+            android:layout_marginEnd="50dp"
+            app:srcCompat="@drawable/navbar_settings" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/sellerNavbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/themeparkBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@color/colorBar"
+            android:layout_marginStart="50dp"
+            app:srcCompat="@drawable/navbar_themepark" />
+
+        <ImageButton
+            android:id="@+id/mealBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/colorBar"
+            app:srcCompat="@drawable/navbar_meal" />
+
+        <ImageButton
+            android:id="@+id/seller_settingsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@color/colorBar"
+            android:layout_marginEnd="50dp"
+            app:srcCompat="@drawable/navbar_settings" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

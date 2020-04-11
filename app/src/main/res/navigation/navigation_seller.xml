@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_seller"
+    app:startDestination="@id/themeParkFragment">
+
+    <fragment
+        android:id="@+id/themeParkFragment"
+        android:name="com.example.ezplay.vendor.ThemeParkFragment"
+        android:label="fragment_themepark_staff"
+        tools:layout="@layout/fragment_themepark_staff">
+        <action
+            android:id="@+id/action_themeParkFragment_to_mealFragment"
+            app:destination="@id/mealFragment"
+            app:popUpTo="@id/themeParkFragment" />
+        <action
+            android:id="@+id/action_themeParkFragment_to_settingsStaffFragment"
+            app:destination="@id/settingsStaffFragment"
+            app:popUpTo="@id/themeParkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mealFragment"
+        android:name="com.example.ezplay.vendor.MealFragment"
+        android:label="fragment_meal_staff"
+        tools:layout="@layout/fragment_meal_staff">
+        <action
+            android:id="@+id/action_mealFragment_to_settingsStaffFragment"
+            app:destination="@id/settingsStaffFragment"
+            app:popUpTo="@id/themeParkFragment" />
+        <action
+            android:id="@+id/action_mealFragment_to_themeParkFragment"
+            app:destination="@id/themeParkFragment"
+            app:popUpTo="@id/themeParkFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsStaffFragment"
+        android:name="com.example.ezplay.vendor.SettingsFragment"
+        android:label="fragment_settings_staff"
+        tools:layout="@layout/fragment_settings_staff">
+        <action
+            android:id="@+id/action_settingsStaffFragment_to_mealFragment"
+            app:destination="@id/mealFragment"
+            app:popUpTo="@id/themeParkFragment" />
+        <action
+            android:id="@+id/action_settingsStaffFragment_to_themeParkFragment"
+            app:destination="@id/themeParkFragment"
+            app:popUpTo="@id/themeParkFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
