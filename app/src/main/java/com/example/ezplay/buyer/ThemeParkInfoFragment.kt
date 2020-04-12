@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_navbar.view.*
+import org.w3c.dom.Text
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -58,9 +59,9 @@ class ThemeParkInfoFragment : Fragment() {
         uid = mAuth.currentUser!!.uid
 
         // display the selected theme park that pass from the search fragment
-        favRef = FirebaseDatabase.getInstance().getReference("users")
+        favRef = FirebaseDatabase.getInstance().getReference("favourite")
         ref = FirebaseDatabase.getInstance().getReference("theme park")
-        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -69,15 +70,24 @@ class ThemeParkInfoFragment : Fragment() {
                 if (p0.exists()) {
                     for (i in p0.children) {
                         val themepark = i.getValue(ThemePark::class.java)
-                        if (args.selectedThemePark.equals(themepark!!.themeParkName)) {
-                            Picasso.with(context!!).load(themepark!!.themeParkImage).into(themeparkImg)
+                        if (args.selectedThemePark == themepark!!.themeParkName ||
+                            args.selectedThemePark == themepark!!.themeParkID.toString()) {
+                            Picasso.with(context!!).load(themepark!!.themeParkImage)
+                                .into(themeparkImg)
                             selectedThemeParkID = themepark.themeParkID.toString()
                             themeparkName.text = "Name: " + themepark.themeParkName
-                            themeparkBusinessHour.text = "Business Hours: " + themepark.themeParkBusinessHours
+                            themeparkBusinessHour.text =
+                                "Business Hours: " + themepark.themeParkBusinessHours
                             themeparkAdultPrice.text = "Adult Price: RM " +
-                                    BigDecimal(themepark.adultPrice).setScale(2, RoundingMode.HALF_EVEN).toString()
+                                    BigDecimal(themepark.adultPrice).setScale(
+                                        2,
+                                        RoundingMode.HALF_EVEN
+                                    ).toString()
                             themeparkChildPrice.text = "Child Price: RM " +
-                                    BigDecimal(themepark.childPrice).setScale(2, RoundingMode.HALF_EVEN).toString()
+                                    BigDecimal(themepark.childPrice).setScale(
+                                        2,
+                                        RoundingMode.HALF_EVEN
+                                    ).toString()
                             isFavouriteThemePark(selectedThemeParkID)
                         }
                     }
@@ -87,7 +97,7 @@ class ThemeParkInfoFragment : Fragment() {
 
         addToFavouriteBtn.setOnClickListener {
             preventLoop = 0
-            favRef.child(uid).child("favourite").child(selectedThemeParkID)
+            favRef.child(uid).child(selectedThemeParkID)
                 .addListenerForSingleValueEvent(object: ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {
                         TODO("Not yet implemented")
@@ -97,14 +107,14 @@ class ThemeParkInfoFragment : Fragment() {
                         if (p0.exists() && preventLoop == 0) {
                             // remove from favourite
                             preventLoop = 1
-                            favRef.child(uid).child("favourite").child(selectedThemeParkID).removeValue()
+                            favRef.child(uid).child(selectedThemeParkID).removeValue()
                             addToFavouriteBtn.setImageDrawable(resources.getDrawable(R.drawable.add_to_favourite_icon))
                             Toast.makeText(activity, "Theme Park is removed from your favourite", Toast.LENGTH_SHORT).show()
                             isFavouriteThemePark(selectedThemeParkID)
                         } else if (!p0.exists() && preventLoop == 0) {
                             // add into favourite
                             preventLoop = 1
-                            favRef.child(uid).child("favourite").child(selectedThemeParkID).setValue(selectedThemeParkID)
+                            favRef.child(uid).child(selectedThemeParkID).setValue(selectedThemeParkID.toInt())
                             addToFavouriteBtn.setImageDrawable(resources.getDrawable(R.drawable.added_to_favourite_icon))
                             Toast.makeText(activity, "Theme Park is added to your favourite", Toast.LENGTH_SHORT).show()
                             isFavouriteThemePark(selectedThemeParkID)
@@ -124,7 +134,7 @@ class ThemeParkInfoFragment : Fragment() {
     private fun isFavouriteThemePark(parkID: String) {
         if (parkID != "") {
             // determine whether this user has added this theme park into favourite
-            favRef.child(uid).child("favourite").child(parkID)
+            favRef.child(uid).child(parkID)
                 .addListenerForSingleValueEvent(object: ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {
                         TODO("Not yet implemented")

@@ -39,6 +39,10 @@
             android:id="@+id/action_favouriteFragment_to_settingsFragment"
             app:destination="@id/settingsStaffFragment"
             app:popUpTo="@id/searchFragment" />
+        <action
+            android:id="@+id/action_favouriteFragment_to_themeParkInfoFragment"
+            app:destination="@id/themeParkInfoFragment"
+            app:popUpTo="@id/favouriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsStaffFragment"
@@ -69,11 +73,14 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popUpTo="@id/themeParkInfoFragment" />
+        <argument
+            android:name="valueSource"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/bookingFragment"
         android:name="com.example.ezplay.buyer.BookingFragment"
-        android:label="fragment_booking" >
+        android:label="fragment_booking">
         <argument
             android:name="selectedThemeParkID"
             app:argType="string" />

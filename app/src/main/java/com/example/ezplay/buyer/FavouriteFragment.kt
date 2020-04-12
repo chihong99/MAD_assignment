@@ -1,6 +1,7 @@
 package com.example.ezplay.buyer
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ezplay.R
-import com.example.ezplay.database.Entity.Favourite
 import com.example.ezplay.database.Entity.ThemePark
 import com.example.ezplay.databinding.FragmentFavouriteBinding
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -19,14 +19,17 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.favourite_themepark_list.view.*
 import kotlinx.android.synthetic.main.user_navbar.view.*
-import java.text.FieldPosition
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FavouriteFragment : Fragment() {
 
     lateinit var favouriteThemeParkList: RecyclerView
-    lateinit var favouriteList: ArrayList<String>
-    lateinit var themeparkList: ArrayList<ThemePark>
+    lateinit var favouriteList: ArrayList<Long>
+    lateinit var themeparkList: MutableList<ThemePark>
     lateinit var ref: DatabaseReference
+    lateinit var refTP: DatabaseReference
+    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<ThemePark, ThemeParkViewHolder>
     val mAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -42,58 +45,56 @@ class FavouriteFragment : Fragment() {
 
         favouriteThemeParkList = binding.favouriteList
         favouriteList = ArrayList()
-        ref = FirebaseDatabase.getInstance().getReference("users")
-        ref.child(mAuth.currentUser!!.uid).child("favourite")
-            .addValueEventListener(object : ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+        themeparkList = mutableListOf()
+        refTP = FirebaseDatabase.getInstance().getReference("theme park")
+        ref = FirebaseDatabase.getInstance().getReference("favourite")
+        ref.child(mAuth.currentUser!!.uid).addValueEventListener(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
 
-                override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.exists()) {
-                        for (i in p0.children) {
-                            //favouriteList.add( i.getValue(Favourite::class.java)!!.themeParkID.toString())
-                        }
-                        readThemeParkRecords(favouriteList)
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    for (i in p0.children) {
+                        val favList = i.value
+                        favouriteList.add(favList as Long)
                     }
+                    displayFavouriteThemeParkList(favouriteList)
                 }
-            })
+            }
+        })
 
         return binding.root
     }
 
-    private fun readThemeParkRecords(recordsList: ArrayList<String>) {
-        for (i in recordsList) {
-            ref.child(mAuth.currentUser!!.uid).child("favourite")
-                .child(i).addValueEventListener(object: ValueEventListener{
-                    override fun onCancelled(p0: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
-
-                    override fun onDataChange(p0: DataSnapshot) {
-                        if (p0.exists()) {
-                            for (j in p0.children) {
-                                themeparkList.add(j.getValue(ThemePark::class.java)!!)
-                            }
-                        }
-                    }
-                })
-        }
+    private fun displayFavouriteThemeParkList(recordsList: ArrayList<Long>) {
         favouriteThemeParkList.setHasFixedSize(true)
         favouriteThemeParkList.layoutManager = LinearLayoutManager(context)
-        displayFavouriteThemeParkList()
-    }
 
-    private fun displayFavouriteThemeParkList() {
-        val FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<ThemePark, ThemeParkViewHolder>(
+        FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<ThemePark, ThemeParkViewHolder>(
             ThemePark::class.java,
             R.layout.favourite_themepark_list,
             ThemeParkViewHolder::class.java,
-            ref
+            refTP
         ) {
             override fun populateViewHolder(viewHolder: ThemeParkViewHolder, model: ThemePark?, position: Int) {
-                Picasso.with(context).load(model?.themeParkImage).into(viewHolder.themeparkView.themeparkImageView)
-                viewHolder.themeparkView.themeparkNameTextView.setText(model?.themeParkName)
+                if (!recordsList.isEmpty()) {
+                    if (recordsList.remove(model?.themeParkID?.toLong())) {
+                        viewHolder.themeparkView.themeparkImageView.visibility = View.VISIBLE
+                        viewHolder.themeparkView.themeparkNameTextView.visibility = View.VISIBLE
+                        viewHolder.themeparkView.listContent.visibility = View.VISIBLE
+                        Picasso.with(context).load(model?.themeParkImage)
+                            .into(viewHolder.themeparkView.themeparkImageView)
+                        viewHolder.themeparkView.themeparkNameTextView.setText(model?.themeParkName)
+                        viewHolder.themeparkView.setOnClickListener{view: View ->
+                            view.findNavController().navigate(FavouriteFragmentDirections
+                                .actionFavouriteFragmentToThemeParkInfoFragment(model?.themeParkID.toString(), "favourite"))
+                        }
+                    } else {
+                        viewHolder.themeparkView.visibility = View.GONE
+                        viewHolder.themeparkView.layoutParams = RecyclerView.LayoutParams(0, 0)
+                    }
+                }
             }
         }
         favouriteThemeParkList.adapter = FirebaseRecyclerAdapter
