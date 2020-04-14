@@ -89,6 +89,11 @@ class RegisterFragment : Fragment() {
         if (passwordText.text.toString().isEmpty()) {
             passwordText.setError("Password is required")
             isValid = false
+        } else {
+            if (passwordText.text.toString().length < 8) {
+                passwordText.setError("Password too short, minimum 8 character.")
+                isValid = false
+            }
         }
         if (retypeText.text.toString().isEmpty()) {
             retypeText.setError("Retype password is required")

@@ -42,6 +42,8 @@
         <action
             android:id="@+id/action_favouriteFragment_to_themeParkInfoFragment"
             app:destination="@id/themeParkInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
             app:popUpTo="@id/favouriteFragment" />
     </fragment>
     <fragment
@@ -73,9 +75,6 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popUpTo="@id/themeParkInfoFragment" />
-        <argument
-            android:name="valueSource"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/bookingFragment"

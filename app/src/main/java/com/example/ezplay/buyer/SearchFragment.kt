@@ -63,7 +63,7 @@ class SearchFragment : Fragment() {
 
         binding.goButton.setOnClickListener {view: View ->
             view.findNavController().navigate(SearchFragmentDirections
-                .actionSearchFragmentToThemeParkInfoFragment(selectedThemePark, "search"))
+                .actionSearchFragmentToThemeParkInfoFragment(selectedThemePark))
         }
 
         return binding.root

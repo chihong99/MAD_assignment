@@ -2,10 +2,8 @@ package com.example.ezplay.login
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +52,18 @@ class LoginFragment : Fragment() {
             loading.setMessage("Loading...")
             loading.show()
 
-            login(loading)
+            if (emailText.text.toString().trim().isNotEmpty() &&
+                passwordText.text.toString().trim().isNotEmpty()) {
+                login(loading)
+            } else {
+                loading.dismiss()
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Invalid email and password!")
+                builder.setPositiveButton(android.R.string.ok) { dialog, which ->
+                    emailText.requestFocus()
+                }
+                builder.show()
+            }
         }
         binding.customNavbar.back.visibility = View.INVISIBLE
         binding.customNavbar.userNavbar.visibility = View.GONE
@@ -146,7 +155,7 @@ class LoginFragment : Fragment() {
         mAuth.fetchSignInMethodsForEmail(emailText.text.toString())
             .addOnCompleteListener(OnCompleteListener<SignInMethodQueryResult> { task ->
                 if (task.result!!.signInMethods!!.size == 0) {
-                    // email and password incoorect
+                    // email and password incorect
                 } else {
                     // email correct, but password incorrect
                     // update the login attempt

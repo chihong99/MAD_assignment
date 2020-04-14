@@ -9,17 +9,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include android:id="@+id/custom_navbar" layout="@layout/user_navbar" />
+        <include
+            android:id="@+id/custom_navbar"
+            layout="@layout/user_navbar"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-110dp" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Booking"
+            android:text="Theme Park Ticket"
+            android:textColor="@color/colorBar"
+            android:textSize="24dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13" />
+
+        <EditText
+            android:id="@+id/datePickerText"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@color/colorBar"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.01999998" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

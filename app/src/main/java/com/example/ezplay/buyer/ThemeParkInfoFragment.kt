@@ -1,7 +1,6 @@
 package com.example.ezplay.buyer
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_navbar.view.*
-import org.w3c.dom.Text
 import java.math.BigDecimal
 import java.math.RoundingMode
 

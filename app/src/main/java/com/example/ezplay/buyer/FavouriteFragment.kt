@@ -1,7 +1,6 @@
 package com.example.ezplay.buyer
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ezplay.R
+import com.example.ezplay.ThemeParkViewHolder
 import com.example.ezplay.database.Entity.ThemePark
 import com.example.ezplay.databinding.FragmentFavouriteBinding
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -19,7 +19,6 @@ import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.favourite_themepark_list.view.*
 import kotlinx.android.synthetic.main.user_navbar.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FavouriteFragment : Fragment() {
@@ -78,7 +77,7 @@ class FavouriteFragment : Fragment() {
             refTP
         ) {
             override fun populateViewHolder(viewHolder: ThemeParkViewHolder, model: ThemePark?, position: Int) {
-                if (!recordsList.isEmpty()) {
+                if (recordsList.isNotEmpty()) {
                     if (recordsList.remove(model?.themeParkID?.toLong())) {
                         viewHolder.themeparkView.themeparkImageView.visibility = View.VISIBLE
                         viewHolder.themeparkView.themeparkNameTextView.visibility = View.VISIBLE
@@ -86,9 +85,9 @@ class FavouriteFragment : Fragment() {
                         Picasso.with(context).load(model?.themeParkImage)
                             .into(viewHolder.themeparkView.themeparkImageView)
                         viewHolder.themeparkView.themeparkNameTextView.setText(model?.themeParkName)
-                        viewHolder.themeparkView.setOnClickListener{view: View ->
+                        viewHolder.themeparkView.setOnClickListener {view: View ->
                             view.findNavController().navigate(FavouriteFragmentDirections
-                                .actionFavouriteFragmentToThemeParkInfoFragment(model?.themeParkID.toString(), "favourite"))
+                                .actionFavouriteFragmentToThemeParkInfoFragment(model?.themeParkID.toString()))
                         }
                     } else {
                         viewHolder.themeparkView.visibility = View.GONE
@@ -99,7 +98,5 @@ class FavouriteFragment : Fragment() {
         }
         favouriteThemeParkList.adapter = FirebaseRecyclerAdapter
     }
-
-    class ThemeParkViewHolder(var themeparkView: View): RecyclerView.ViewHolder(themeparkView) {}
 
 }

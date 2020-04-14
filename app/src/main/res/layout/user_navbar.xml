@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#6FFFFFFF"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        android:elevation="100dp"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="110dp"
+                app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/custom_navbar" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
