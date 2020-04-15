@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.ezplay.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class OrderFragment : Fragment() {
 
     override fun onCreateView(

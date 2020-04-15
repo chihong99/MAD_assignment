@@ -24,9 +24,11 @@ class BookingFragment : Fragment() {
     lateinit var dateText: EditText
     private val dateFormat: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
     lateinit var calendar: Calendar
-    var day = 0
-    var month = 0
-    var year = 0
+    private var day = 0
+    private var month = 0
+    private var year = 0
+    private var adultTicketQuantity: Int = 1  // adult ticket minimum must be 1
+    private var childTicketQuantity: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,13 @@ class BookingFragment : Fragment() {
             view?.findNavController()?.popBackStack() }
         binding.customNavbar.userNavbar.visibility = View.GONE
         binding.customNavbar.sellerNavbar.visibility = View.GONE
+
+        if (savedInstanceState != null) {
+            adultTicketQuantity = savedInstanceState.getInt("AdultTicketQuantity", 1)
+            childTicketQuantity = savedInstanceState.getInt("ChildTicketQuantity", 0)
+            binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
+            binding.childTicketQuantityText.text = childTicketQuantity.toString()
+        }
 
         val args = BookingFragmentArgs.fromBundle(arguments!!)
         binding.HeaderText.text = args.selectedThemeParkName + " Ticket"
@@ -74,33 +83,39 @@ class BookingFragment : Fragment() {
 
         binding.minusAdultQuantityBtn.setOnClickListener {
             if (binding.adultTicketQuantityText.text.toString().toInt() > 1) {
-                val newQuantity = binding.adultTicketQuantityText.text.toString().toInt() - 1
-                binding.adultTicketQuantityText.text = newQuantity.toString()
+                adultTicketQuantity = binding.adultTicketQuantityText.text.toString().toInt() - 1
+                binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
             }
         }
 
         binding.plusAdultQuantityBtn.setOnClickListener {
-            val newQuantity = binding.adultTicketQuantityText.text.toString().toInt() + 1
-            binding.adultTicketQuantityText.text = newQuantity.toString()
+            adultTicketQuantity = binding.adultTicketQuantityText.text.toString().toInt() + 1
+            binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
         }
 
         binding.minusChildQuantityBtn.setOnClickListener {
             if (binding.childTicketQuantityText.text.toString().toInt() > 0) {
-                val newQuantity = binding.childTicketQuantityText.text.toString().toInt() - 1
-                binding.childTicketQuantityText.text = newQuantity.toString()
+                childTicketQuantity = binding.childTicketQuantityText.text.toString().toInt() - 1
+                binding.childTicketQuantityText.text = childTicketQuantity.toString()
             }
         }
 
         binding.plusChildQuantityBtn.setOnClickListener {
-            val newQuantity = binding.childTicketQuantityText.text.toString().toInt() + 1
-            binding.childTicketQuantityText.text = newQuantity.toString()
+            childTicketQuantity = binding.childTicketQuantityText.text.toString().toInt() + 1
+            binding.childTicketQuantityText.text = childTicketQuantity.toString()
         }
 
         binding.goToOrderFoodBtn.setOnClickListener {
-            //view.findNavController().navigate()
+            view!!.findNavController().navigate(R.id.action_bookingFragment_to_orderFragment)
         }
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("AdultTicketQuantity", adultTicketQuantity)
+        outState.putInt("ChildTicketQuantity", childTicketQuantity)
     }
 
 }
