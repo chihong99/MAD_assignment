@@ -39,6 +39,9 @@ class BookingFragment : Fragment() {
         binding.customNavbar.sellerNavbar.visibility = View.GONE
 
         val args = BookingFragmentArgs.fromBundle(arguments!!)
+        binding.HeaderText.text = args.selectedThemeParkName + " Ticket"
+        binding.AdultPriceTagText.text = "Adult Price (RM " + args.selectedThemeParkAdultPrice + ")"
+        binding.ChildPriceTagText.text = "Child Price (RM " + args.selectedThemeParkChildPrice + ")"
         dateText = binding.datePickerText
 
         calendar = Calendar.getInstance()
@@ -56,17 +59,45 @@ class BookingFragment : Fragment() {
                     }, year, month, day
                 )
             //show the previous selected date
-            var currentDate = dateText.text.toString()
-            var delimeter = "-"
-            var dayMonthYear = currentDate.split(delimeter)
+            val currentDate = dateText.text.toString()
+            val delimeter = "-"
+            val dayMonthYear = currentDate.split(delimeter)
             datePickerDialog.updateDate(dayMonthYear[2].toInt(), dayMonthYear[1].toInt() - 1, dayMonthYear[0].toInt())
             // set the minimum date can be selected
             datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
             // set the maximum date can be selected, which are the range from current to next 3 months
-            var maxDate = Calendar.getInstance()
+            val maxDate = Calendar.getInstance()
             maxDate.set(dayMonthYear[2].toInt(), dayMonthYear[1].toInt() + 2, dayMonthYear[0].toInt())
             datePickerDialog.datePicker.maxDate = maxDate.timeInMillis
             datePickerDialog.show()
+        }
+
+        binding.minusAdultQuantityBtn.setOnClickListener {
+            if (binding.adultTicketQuantityText.text.toString().toInt() > 1) {
+                val newQuantity = binding.adultTicketQuantityText.text.toString().toInt() - 1
+                binding.adultTicketQuantityText.text = newQuantity.toString()
+            }
+        }
+
+        binding.plusAdultQuantityBtn.setOnClickListener {
+            val newQuantity = binding.adultTicketQuantityText.text.toString().toInt() + 1
+            binding.adultTicketQuantityText.text = newQuantity.toString()
+        }
+
+        binding.minusChildQuantityBtn.setOnClickListener {
+            if (binding.childTicketQuantityText.text.toString().toInt() > 0) {
+                val newQuantity = binding.childTicketQuantityText.text.toString().toInt() - 1
+                binding.childTicketQuantityText.text = newQuantity.toString()
+            }
+        }
+
+        binding.plusChildQuantityBtn.setOnClickListener {
+            val newQuantity = binding.childTicketQuantityText.text.toString().toInt() + 1
+            binding.childTicketQuantityText.text = newQuantity.toString()
+        }
+
+        binding.goToOrderFoodBtn.setOnClickListener {
+            //view.findNavController().navigate()
         }
 
         return binding.root

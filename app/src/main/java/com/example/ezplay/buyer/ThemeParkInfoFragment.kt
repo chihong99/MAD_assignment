@@ -35,6 +35,9 @@ class ThemeParkInfoFragment : Fragment() {
     lateinit var themeparkChildPrice: TextView
     lateinit var uid: String
     lateinit var selectedThemeParkID: String
+    lateinit var selectedThemeParkName: String
+    lateinit var selectedThemeParkAdultPrice: String
+    lateinit var selectedThemeParkChildPrice: String
     var preventLoop = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +76,11 @@ class ThemeParkInfoFragment : Fragment() {
                             Picasso.with(context!!).load(themepark!!.themeParkImage)
                                 .into(themeparkImg)
                             selectedThemeParkID = themepark.themeParkID.toString()
+                            selectedThemeParkName = themepark.themeParkName
+                            selectedThemeParkAdultPrice = BigDecimal(themepark.adultPrice).setScale(
+                                        2, RoundingMode.HALF_EVEN).toString()
+                            selectedThemeParkChildPrice = BigDecimal(themepark.childPrice).setScale(
+                                2, RoundingMode.HALF_EVEN).toString()
                             themeparkName.text = "Name: " + themepark.themeParkName
                             themeparkBusinessHour.text =
                                 "Business Hours: " + themepark.themeParkBusinessHours
@@ -123,7 +131,13 @@ class ThemeParkInfoFragment : Fragment() {
 
         bookNowBtn.setOnClickListener {view: View ->
             view.findNavController().navigate(
-                ThemeParkInfoFragmentDirections.actionThemeParkInfoFragmentToBookingFragment(selectedThemeParkID))
+                ThemeParkInfoFragmentDirections.actionThemeParkInfoFragmentToBookingFragment(
+                    selectedThemeParkID,
+                    selectedThemeParkName,
+                    selectedThemeParkAdultPrice,
+                    selectedThemeParkChildPrice
+                )
+            )
         }
 
         return binding.root
