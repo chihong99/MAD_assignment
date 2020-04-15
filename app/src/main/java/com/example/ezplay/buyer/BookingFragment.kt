@@ -2,6 +2,8 @@ package com.example.ezplay.buyer
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,6 +47,16 @@ class BookingFragment : Fragment() {
             childTicketQuantity = savedInstanceState.getInt("ChildTicketQuantity", 0)
             binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
             binding.childTicketQuantityText.text = childTicketQuantity.toString()
+        }
+
+        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("return", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor =  sharedPreferences.edit()
+        val isReturn = sharedPreferences.getString("returnFromOrder", "no")
+        if (isReturn.equals("yes")) {
+            editor.remove("returnFromOrder")
+            editor.commit()
+            // restore the data when navigate from order to here
+
         }
 
         val args = BookingFragmentArgs.fromBundle(arguments!!)
@@ -106,7 +118,8 @@ class BookingFragment : Fragment() {
         }
 
         binding.goToOrderFoodBtn.setOnClickListener {
-            view!!.findNavController().navigate(R.id.action_bookingFragment_to_orderFragment)
+            view!!.findNavController().navigate(BookingFragmentDirections
+                .actionBookingFragmentToOrderFragment(args.selectedThemeParkID.toString()))
         }
 
         return binding.root

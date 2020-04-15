@@ -207,7 +207,7 @@ class ThemeParkFragment : Fragment() {
             currentThemParkID = tpid
             if (image != "" && uri.toString() != image) {
                 uri = Uri.parse(image)
-                Picasso.with(saveContext).load(image).into(uploadImageView)
+                Picasso.with(saveContext).load(image).fit().centerCrop().into(uploadImageView)
             }
             if (name != "") {
                 themeparkNameTextView.text = "Name: " + name
@@ -277,8 +277,8 @@ class ThemeParkFragment : Fragment() {
                                         }
                                         currentThemParkID = themepark!!.themeParkID
                                         uri = Uri.parse(themepark.themeParkImage)
-                                        Picasso.with(saveContext)
-                                            .load(themepark.themeParkImage)
+                                        Picasso.with(saveContext).load(themepark.themeParkImage)
+                                            .fit().centerCrop()
                                             .into(uploadImageView)
                                         themeparkNameTextView.text =
                                             "Name: " + themepark.themeParkName

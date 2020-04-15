@@ -8,13 +8,11 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
-import androidx.core.view.isInvisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -96,7 +94,7 @@ class MealFragment : Fragment() {
             query
         ) {
             override fun populateViewHolder(viewHolder: MealViewHolder?, model: Meal?, position: Int) {
-                Picasso.with(context).load(model?.mealImage)
+                Picasso.with(context).load(model?.mealImage).fit().centerCrop()
                     .into(viewHolder!!.mealView.mealImageView)
                 viewHolder.mealView.mealNameTextView.setText(model?.mealName)
                 viewHolder.mealView.mealPriceTextView.setText("RM" +

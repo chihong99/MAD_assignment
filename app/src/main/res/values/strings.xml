@@ -9,4 +9,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_enter_your_email_here_we_will_send_a_link_for_reset_password_via_that_email">Please enter your email here, we will send a link for reset password via that email</string>
+    <string name="enter_you_email_here">Enter your email here</string>
+    <string name="send_email">Send Email</string>
 </resources>

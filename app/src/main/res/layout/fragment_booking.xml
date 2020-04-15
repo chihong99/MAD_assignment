@@ -68,11 +68,11 @@
 
                         <TextView
                             android:id="@+id/textView4"
-                            android:layout_width="176dp"
+                            android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_weight="1"
-                            android:gravity="right"
                             android:padding="10dp"
+                            android:paddingStart="25dp"
                             android:text="Booking Date: "
                             android:textSize="16dp" />
 
@@ -250,9 +250,11 @@
                 <ImageView
                     android:id="@+id/goToOrderFoodBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:background="@color/backgroundColor"
                     android:src="@drawable/next_icon"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

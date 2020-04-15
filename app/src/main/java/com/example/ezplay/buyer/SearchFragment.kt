@@ -1,26 +1,35 @@
 package com.example.ezplay.buyer
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ezplay.R
+import com.example.ezplay.ThemeParkViewHolder
+import com.example.ezplay.database.Entity.ThemePark
 import com.example.ezplay.databinding.FragmentSearchBinding
+import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.search_themepark.view.*
 import kotlinx.android.synthetic.main.user_navbar.view.*
+import kotlinx.coroutines.flow.combine
 
 class SearchFragment : Fragment() {
 
     lateinit var ref: DatabaseReference
-    lateinit var themeparkNameAdapter: ArrayAdapter<String>
-    lateinit var spinnerList: ArrayList<String>
-    lateinit var selectedThemePark: String
+    lateinit var searchBox: EditText
+    lateinit var searchRecyclerView: RecyclerView
+    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<ThemePark, ThemeParkViewHolder>
+    private var keywords: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -35,38 +44,58 @@ class SearchFragment : Fragment() {
 
         // initiate the firebase database
         ref = FirebaseDatabase.getInstance().getReference("theme park")
-        spinnerList = ArrayList()
-        themeparkNameAdapter = ArrayAdapter(context!!, R.layout.themepark_spinner, spinnerList)
-        binding.themeparkSpinner.adapter = themeparkNameAdapter
-        ref.orderByChild("themeParkName").addValueEventListener(object: ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+        searchBox = binding.searchEditText
+        keywords = searchBox.text.toString()
+        searchRecyclerView = binding.searchResultRecyclerView
+        searchRecyclerView.setHasFixedSize(true)
+        searchRecyclerView.layoutManager = LinearLayoutManager(context)
 
-            override fun onDataChange(p0: DataSnapshot) {
-                for (i in p0.children) {
-                    spinnerList.add(i.child("themeParkName").getValue().toString())
-                    themeparkNameAdapter.notifyDataSetChanged()
-                }
-            }
-        })
-
-        binding.themeparkSpinner.setOnItemSelectedListener(object : OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-                selectedThemePark = binding.themeparkSpinner.selectedItem.toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // TODO Auto-generated method stub
-            }
-        })
-
-        binding.goButton.setOnClickListener {view: View ->
-            view.findNavController().navigate(SearchFragmentDirections
-                .actionSearchFragmentToThemeParkInfoFragment(selectedThemePark))
+        if (savedInstanceState != null) {
+            searchBox.setText(savedInstanceState.getString("keyword"))
         }
 
+        searchBox.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val keyword = searchBox.text.toString()
+                displayThemePark(keyword)
+            }
+        })
+
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("keyword", keywords)
+    }
+
+    private fun displayThemePark(keyword: String) {
+        var query: Query
+        if (keyword == "")
+            query = ref.orderByChild("themeParkName").equalTo(keyword)
+        else
+            query = ref.orderByChild("themeParkName").startAt(keyword).endAt(keyword + "\uf8ff")
+
+        FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<ThemePark, ThemeParkViewHolder>(
+            ThemePark::class.java,
+            R.layout.search_themepark,
+            ThemeParkViewHolder::class.java,
+            query
+        ) {
+            override fun populateViewHolder(viewHolder: ThemeParkViewHolder?, model: ThemePark?, position: Int) {
+                Picasso.with(context).load(model?.themeParkImage).fit()
+                    .centerCrop().into(viewHolder!!.themeparkView.themeparkImageView)
+                viewHolder.themeparkView.themeparkNameTextView.text = model?.themeParkName
+                viewHolder.themeparkView.setOnClickListener { view: View ->
+                    view.findNavController().navigate(SearchFragmentDirections
+                        .actionSearchFragmentToThemeParkInfoFragment(model?.themeParkName.toString()))
+                }
+            }
+
+        }
+        searchRecyclerView.adapter = FirebaseRecyclerAdapter
     }
 
 }

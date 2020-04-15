@@ -17,57 +17,83 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="90dp"
+            android:gravity="center"
             android:text="What Theme Park you looking for?"
             android:textColor="@color/colorBar"
             android:textSize="17dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/cardView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
-            app:layout_constraintVertical_bias="0.97" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="320dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="392dp"
-            app:cardCornerRadius="11dp"
             app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/custom_navbar"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.0" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp">
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:hint="Search keyword"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBar"
+            android:textColorHint="@color/hintColor"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
+            app:layout_constraintVertical_bias="0.0" />
 
-                <Spinner
-                    android:id="@+id/themeparkSpinner"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchResultRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-                <ImageButton
-                    android:id="@+id/goButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorBar"
-                    android:src="@drawable/next_icon" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/cardView2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="320dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:layout_marginBottom="392dp"-->
+<!--            app:cardCornerRadius="11dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/custom_navbar"-->
+<!--            app:layout_constraintVertical_bias="1.0">-->
 
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_margin="10dp">-->
 
-        </androidx.cardview.widget.CardView>
+<!--                <Spinner-->
+<!--                    android:id="@+id/themeparkSpinner"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1" />-->
 
+<!--                <ImageButton-->
+<!--                    android:id="@+id/goButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/colorBar"-->
+<!--                    android:src="@drawable/next_icon" />-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

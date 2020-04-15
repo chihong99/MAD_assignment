@@ -82,12 +82,12 @@ class FavouriteFragment : Fragment() {
                         viewHolder.themeparkView.themeparkImageView.visibility = View.VISIBLE
                         viewHolder.themeparkView.themeparkNameTextView.visibility = View.VISIBLE
                         viewHolder.themeparkView.listContent.visibility = View.VISIBLE
-                        Picasso.with(context).load(model?.themeParkImage)
+                        Picasso.with(context).load(model?.themeParkImage).fit().centerCrop()
                             .into(viewHolder.themeparkView.themeparkImageView)
                         viewHolder.themeparkView.themeparkNameTextView.setText(model?.themeParkName)
                         viewHolder.themeparkView.setOnClickListener {view: View ->
                             view.findNavController().navigate(FavouriteFragmentDirections
-                                .actionFavouriteFragmentToThemeParkInfoFragment(model?.themeParkID.toString()))
+                                .actionFavouriteFragmentToThemeParkInfoFragment(model!!.themeParkName))
                         }
                     } else {
                         viewHolder.themeparkView.visibility = View.GONE

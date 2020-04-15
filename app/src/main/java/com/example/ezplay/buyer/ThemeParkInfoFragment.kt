@@ -1,10 +1,11 @@
 package com.example.ezplay.buyer
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -44,9 +45,13 @@ class ThemeParkInfoFragment : Fragment() {
         binding.customNavbar.userNavbar.visibility = View.GONE
         binding.customNavbar.sellerNavbar.visibility = View.GONE
 
+        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("return", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor =  sharedPreferences.edit()
+        editor.remove("returnFromOrder")
+        editor.commit()
+
         val args = ThemeParkInfoFragmentArgs.fromBundle(arguments!!)
         themeparkView = binding.themeparkRecyclerView
-        //bookNowBtn = binding.bookNowButton
         uid = mAuth.currentUser!!.uid
 
         // display the selected theme park that pass from the search fragment
@@ -68,14 +73,14 @@ class ThemeParkInfoFragment : Fragment() {
             query
         ) {
             override fun populateViewHolder(p0: ThemeParkViewHolder?, p1: ThemePark?, position: Int) {
-                Picasso.with(context).load(p1!!.themeParkImage).into(p0!!.themeparkView.themeparkImageView)
+                Picasso.with(context).load(p1!!.themeParkImage).fit().centerCrop()
+                    .into(p0!!.themeparkView.themeparkImageView)
                 p0.themeparkView.themeparkNameTextView.text = "Name: " + p1.themeParkName
                 p0.themeparkView.themeparkBusinessHourTextView.text = "Business Hours: " + p1.themeParkBusinessHours
                 p0.themeparkView.themeparkAdultPriceTextView.text = "Adult Price: RM " +
                         BigDecimal(p1.adultPrice).setScale(2, RoundingMode.HALF_EVEN).toString()
                 p0.themeparkView.themeparkChildPriceTextView.text = "Child Price: RM " +
                         BigDecimal(p1.childPrice).setScale(2, RoundingMode.HALF_EVEN).toString()
-                //isFavouriteThemePark(selectedThemeParkID)
                 if (p1.themeParkID.toString() != "") {
                     // determine whether this user has added this theme park into favourite
                     favRef.child(uid).child(p1.themeParkID.toString()).addListenerForSingleValueEvent(object: ValueEventListener{
@@ -85,9 +90,11 @@ class ThemeParkInfoFragment : Fragment() {
 
                         override fun onDataChange(t0: DataSnapshot) {
                             if (t0.exists()) {
-                                p0.themeparkView.addToFavouriteButton.setImageDrawable(resources.getDrawable(R.drawable.added_to_favourite_icon))
+                                p0.themeparkView.addToFavouriteButton.setImageDrawable(
+                                    resources.getDrawable(R.drawable.added_to_favourite_icon))
                             } else {
-                                p0.themeparkView.addToFavouriteButton.setImageDrawable(resources.getDrawable(R.drawable.add_to_favourite_icon))
+                                p0.themeparkView.addToFavouriteButton.setImageDrawable(
+                                    resources.getDrawable(R.drawable.add_to_favourite_icon))
                             }
                         }
                     })
@@ -106,13 +113,15 @@ class ThemeParkInfoFragment : Fragment() {
                                 // remove from favourite
                                 preventLoop = 1
                                 favRef.child(uid).child(p1.themeParkID.toString()).removeValue()
-                                p0.themeparkView.addToFavouriteButton.setImageDrawable(resources.getDrawable(R.drawable.add_to_favourite_icon))
+                                p0.themeparkView.addToFavouriteButton.setImageDrawable(
+                                    resources.getDrawable(R.drawable.add_to_favourite_icon))
                                 Toast.makeText(activity, "Theme Park is removed from your favourite", Toast.LENGTH_SHORT).show()
                             } else if (!t0.exists() && preventLoop == 0) {
                                 // add into favourite
                                 preventLoop = 1
                                 favRef.child(uid).child(p1.themeParkID.toString()).setValue(p1.themeParkID.toString().toInt())
-                                p0.themeparkView.addToFavouriteButton.setImageDrawable(resources.getDrawable(R.drawable.added_to_favourite_icon))
+                                p0.themeparkView.addToFavouriteButton.setImageDrawable(
+                                    resources.getDrawable(R.drawable.added_to_favourite_icon))
                                 Toast.makeText(activity, "Theme Park is added to your favourite", Toast.LENGTH_SHORT).show()
                             }
                         }
