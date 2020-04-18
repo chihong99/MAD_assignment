@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,12 +19,18 @@ import androidx.navigation.findNavController
 import com.example.ezplay.R
 import com.example.ezplay.databinding.FragmentBookingBinding
 import com.example.ezplay.getCurrentDate
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.user_navbar.view.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.SimpleDateFormat
 import java.util.*
 
 class BookingFragment : Fragment() {
 
+    lateinit var totalAmount: TextView
+    lateinit var adultTicketQty: TextView
+    lateinit var childTicketQty: TextView
     lateinit var dateText: EditText
     private val dateFormat: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
     lateinit var calendar: Calendar
@@ -31,6 +39,8 @@ class BookingFragment : Fragment() {
     private var year = 0
     private var adultTicketQuantity: Int = 1  // adult ticket minimum must be 1
     private var childTicketQuantity: Int = 0
+    private var bookingDate: String = getCurrentDate()
+    val mAuth = FirebaseAuth.getInstance()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -42,34 +52,34 @@ class BookingFragment : Fragment() {
         binding.customNavbar.userNavbar.visibility = View.GONE
         binding.customNavbar.sellerNavbar.visibility = View.GONE
 
-        if (savedInstanceState != null) {
-            adultTicketQuantity = savedInstanceState.getInt("AdultTicketQuantity", 1)
-            childTicketQuantity = savedInstanceState.getInt("ChildTicketQuantity", 0)
-            binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
-            binding.childTicketQuantityText.text = childTicketQuantity.toString()
-        }
-
-        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("return", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor =  sharedPreferences.edit()
-        val isReturn = sharedPreferences.getString("returnFromOrder", "no")
-        if (isReturn.equals("yes")) {
-            editor.remove("returnFromOrder")
-            editor.commit()
-            // restore the data when navigate from order to here
-
-        }
-
+        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences(mAuth.currentUser!!.uid, Context.MODE_PRIVATE)
         val args = BookingFragmentArgs.fromBundle(arguments!!)
         binding.HeaderText.text = args.selectedThemeParkName + " Ticket"
         binding.AdultPriceTagText.text = "Adult Price (RM " + args.selectedThemeParkAdultPrice + ")"
         binding.ChildPriceTagText.text = "Child Price (RM " + args.selectedThemeParkChildPrice + ")"
+        adultTicketQty = binding.adultTicketQuantityText
+        childTicketQty = binding.childTicketQuantityText
+        totalAmount = binding.totalAmountTextView
         dateText = binding.datePickerText
+
+        if (savedInstanceState != null) {
+            adultTicketQuantity = savedInstanceState.getInt("AdultTicketQuantity", 1)
+            childTicketQuantity = savedInstanceState.getInt("ChildTicketQuantity", 0)
+        } else {
+            adultTicketQuantity = sharedPreferences.getInt("adultTicketQuantity", 1)
+            childTicketQuantity = sharedPreferences.getInt("childTicketQuantity", 0)
+            bookingDate = sharedPreferences.getString("bookingDate", getCurrentDate()).toString()
+        }
+
+        dateText.setText(bookingDate)
+        adultTicketQty.text = adultTicketQuantity.toString()
+        childTicketQty.text = childTicketQuantity.toString()
+        calculateTicketPrice(args)
 
         calendar = Calendar.getInstance()
         day = calendar.get(Calendar.DAY_OF_MONTH)
         month = calendar.get(Calendar.MONTH)
         year = calendar.get(Calendar.YEAR)
-        dateText.setText(getCurrentDate())
 
         dateText.setOnClickListener {
             val datePickerDialog =
@@ -94,35 +104,54 @@ class BookingFragment : Fragment() {
         }
 
         binding.minusAdultQuantityBtn.setOnClickListener {
-            if (binding.adultTicketQuantityText.text.toString().toInt() > 1) {
-                adultTicketQuantity = binding.adultTicketQuantityText.text.toString().toInt() - 1
-                binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
+            if (adultTicketQty.text.toString().toInt() > 1) {
+                adultTicketQuantity = adultTicketQty.text.toString().toInt() - 1
+                adultTicketQty.text = adultTicketQuantity.toString()
+                calculateTicketPrice(args)
             }
         }
 
         binding.plusAdultQuantityBtn.setOnClickListener {
-            adultTicketQuantity = binding.adultTicketQuantityText.text.toString().toInt() + 1
-            binding.adultTicketQuantityText.text = adultTicketQuantity.toString()
+            adultTicketQuantity = adultTicketQty.text.toString().toInt() + 1
+            adultTicketQty.text = adultTicketQuantity.toString()
+            calculateTicketPrice(args)
         }
 
         binding.minusChildQuantityBtn.setOnClickListener {
-            if (binding.childTicketQuantityText.text.toString().toInt() > 0) {
-                childTicketQuantity = binding.childTicketQuantityText.text.toString().toInt() - 1
-                binding.childTicketQuantityText.text = childTicketQuantity.toString()
+            if (childTicketQty.text.toString().toInt() > 0) {
+                childTicketQuantity = childTicketQty.text.toString().toInt() - 1
+                childTicketQty.text = childTicketQuantity.toString()
+                calculateTicketPrice(args)
             }
         }
 
         binding.plusChildQuantityBtn.setOnClickListener {
-            childTicketQuantity = binding.childTicketQuantityText.text.toString().toInt() + 1
-            binding.childTicketQuantityText.text = childTicketQuantity.toString()
+            childTicketQuantity = childTicketQty.text.toString().toInt() + 1
+            childTicketQty.text = childTicketQuantity.toString()
+            calculateTicketPrice(args)
         }
 
         binding.goToOrderFoodBtn.setOnClickListener {
+            val editor: SharedPreferences.Editor =  sharedPreferences.edit()
+            editor.putString("bookingDate", dateText.text.toString())
+            editor.putInt("adultTicketQuantity", adultTicketQty.text.toString().toInt())
+            editor.putInt("childTicketQuantity", childTicketQty.text.toString().toInt())
+            editor.putInt("themeParkID", args.selectedThemeParkID.toInt())
+            editor.putString("adultTicketPrice", args.selectedThemeParkAdultPrice)
+            editor.putString("childTicketPrice", args.selectedThemeParkChildPrice)
+            editor.commit()
+
             view!!.findNavController().navigate(BookingFragmentDirections
-                .actionBookingFragmentToOrderFragment(args.selectedThemeParkID.toString()))
+                .actionBookingFragmentToOrderFragment(args.selectedThemeParkSellerID))
         }
 
         return binding.root
+    }
+
+    private fun calculateTicketPrice(args: BookingFragmentArgs) {
+        val total = args.selectedThemeParkAdultPrice.toDouble().times(adultTicketQty.text.toString().toInt()) +
+                args.selectedThemeParkChildPrice.toDouble().times(childTicketQty.text.toString().toInt())
+        totalAmount.text = "RM " + BigDecimal(total).setScale(2, RoundingMode.HALF_EVEN).toString()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

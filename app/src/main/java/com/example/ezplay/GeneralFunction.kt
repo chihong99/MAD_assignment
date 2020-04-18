@@ -22,3 +22,5 @@ fun getCurrentDate(): String {
 class ThemeParkViewHolder(var themeparkView: View): RecyclerView.ViewHolder(themeparkView) {}
 
 class MealViewHolder(var mealView: View): RecyclerView.ViewHolder(mealView) {}
+
+class CartViewHolder(var cartView: View): RecyclerView.ViewHolder(cartView) {}

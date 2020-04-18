@@ -12,4 +12,16 @@
     <string name="please_enter_your_email_here_we_will_send_a_link_for_reset_password_via_that_email">Please enter your email here, we will send a link for reset password via that email</string>
     <string name="enter_you_email_here">Enter your email here</string>
     <string name="send_email">Send Email</string>
+    <string name="booking_date">"Booking Date: "</string>
+    <string name="age_13_years_old_and_above">(Age 13 years old and above)</string>
+    <string name="age_12_years_old_and_below">(Age 12 years old and below)</string>
+    <string name="meal_order">Meal Order</string>
+    <string name="total_amount">Total Amount:</string>
+    <string name="add_to_order_list">Add to order list</string>
+    <string name="book_now">Book Now</string>
+    <string name="view_cart">View Cart</string>
+    <string name="adult_ticket">Adult Ticket</string>
+    <string name="ticket">Ticket</string>
+    <string name="meal">Meal</string>
+    <string name="child_ticket">Child Ticket</string>
 </resources>

@@ -7,4 +7,5 @@
     <color name="backgroundColor">#3a3838</color>
     <color name="textColor">#0A74FF</color>
     <color name="hintColor">#D3D3D3</color>
+    <color name="redColor">#ff007f</color>
 </resources>

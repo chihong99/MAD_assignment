@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.ezplay.login.BookingFragment">
+    tools:context="com.example.ezplay.buyer.BookingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bookingConstraint"
@@ -16,9 +16,11 @@
             tools:layout_editor_absoluteY="-110dp" />
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="80dp"
+            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,8 +35,9 @@
                     android:id="@+id/HeaderText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Theme Park Ticket"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
+                    android:text="Theme Park Ticket"
                     android:textColor="@color/colorBar"
                     android:textSize="26dp"
                     android:textStyle="bold"
@@ -48,9 +51,7 @@
                     android:id="@+id/cardView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="20dp"
                     android:background="@color/backgroundColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
                             android:layout_weight="1"
                             android:padding="10dp"
                             android:paddingStart="25dp"
-                            android:text="Booking Date: "
+                            android:text="@string/booking_date"
                             android:textSize="16dp" />
 
                         <EditText
@@ -93,9 +94,7 @@
                     android:id="@+id/cardView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="2dp"
                     android:background="@color/backgroundColor"
                     app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +129,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingStart="25dp"
                                 android:paddingBottom="10dp"
-                                android:text="(Age 13 years old and above)"
+                                android:text="@string/age_13_years_old_and_above"
                                 android:textSize="11dp" />
                         </LinearLayout>
 
@@ -172,9 +171,7 @@
                     android:id="@+id/cardView5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginTop="2dp"
                     android:background="@color/backgroundColor"
                     app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -209,7 +206,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingStart="25dp"
                                 android:paddingBottom="10dp"
-                                android:text="(Age 12 years old and below)"
+                                android:text="@string/age_12_years_old_and_below"
                                 android:textSize="11dp" />
                         </LinearLayout>
 
@@ -246,22 +243,49 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:id="@+id/goToOrderFoodBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/backgroundColor"
-                    android:src="@drawable/next_icon"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView5" />
-
             </LinearLayout>
         </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/goToOrderFoodBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/redColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
+            app:layout_constraintVertical_bias="1.0">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/redColor">
+
+                <TextView
+                    android:id="@+id/bookNowTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingStart="25dp"
+                    android:text="@string/book_now"
+                    android:textColor="@color/colorBar"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/totalAmountTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical|end"
+                    android:padding="10dp"
+                    android:text="RM 0.00"
+                    android:textColor="@color/colorBar"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

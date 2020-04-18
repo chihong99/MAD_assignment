@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.ezplay.login.OrderFragment">
+    tools:context="com.example.ezplay.buyer.OrderFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/orderConstraint"
@@ -12,14 +12,79 @@
         <include android:id="@+id/custom_navbar" layout="@layout/user_navbar" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/HeaderText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order"
+            android:layout_marginTop="90dp"
+            android:gravity="center"
+            android:text="@string/meal_order"
+            android:textColor="@color/colorBar"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderMealRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="130dp"
+            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/viewCartBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/redColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
+            app:layout_constraintVertical_bias="1.0">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/redColor">
+                <TextView
+                    android:id="@+id/viewcartTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingStart="25dp"
+                    android:text="@string/view_cart"
+                    android:textColor="@color/colorBar"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/mealCountTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textColor="@color/colorBar"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/totalMealPriceTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical|end"
+                    android:padding="10dp"
+                    android:text="RM 0.00"
+                    android:textColor="@color/colorBar"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -79,7 +79,8 @@
     <fragment
         android:id="@+id/bookingFragment"
         android:name="com.example.ezplay.buyer.BookingFragment"
-        android:label="fragment_booking">
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking">
         <argument
             android:name="selectedThemeParkID"
             app:argType="string" />
@@ -92,6 +93,9 @@
         <argument
             android:name="selectedThemeParkChildPrice"
             app:argType="string" />
+        <argument
+            android:name="selectedThemeParkSellerID"
+            app:argType="string" />
         <action
             android:id="@+id/action_bookingFragment_to_orderFragment"
             app:destination="@id/orderFragment"
@@ -102,9 +106,23 @@
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.example.ezplay.buyer.OrderFragment"
-        android:label="fragment_order">
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order">
         <argument
-            android:name="selectedThemeParkID"
+            android:name="selectedThemeParkSellerID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_orderFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment"
+            app:popUpTo="@id/orderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.ezplay.buyer.PaymentFragment"
+        android:label="PaymentFragment"
+        tools:layout="@layout/fragment_payment" >
+        <argument
+            android:name="count"
+            app:argType="integer" />
     </fragment>
 </navigation>

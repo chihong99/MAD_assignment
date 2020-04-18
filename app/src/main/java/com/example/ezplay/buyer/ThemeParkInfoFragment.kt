@@ -20,7 +20,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_themepark_info.view.*
 import kotlinx.android.synthetic.main.themepark_recyclerview.view.*
 import kotlinx.android.synthetic.main.user_navbar.view.*
 import java.math.BigDecimal
@@ -45,9 +44,12 @@ class ThemeParkInfoFragment : Fragment() {
         binding.customNavbar.userNavbar.visibility = View.GONE
         binding.customNavbar.sellerNavbar.visibility = View.GONE
 
-        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences("return", Context.MODE_PRIVATE)
+        // clear the previous incomplete transaction cache
+        FirebaseDatabase.getInstance().getReference("users")
+            .child(mAuth.currentUser!!.uid).child("cart").removeValue()
+        val sharedPreferences: SharedPreferences = activity!!.getSharedPreferences(mAuth.currentUser!!.uid, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor =  sharedPreferences.edit()
-        editor.remove("returnFromOrder")
+        editor.clear()
         editor.commit()
 
         val args = ThemeParkInfoFragmentArgs.fromBundle(arguments!!)
@@ -135,7 +137,8 @@ class ThemeParkInfoFragment : Fragment() {
                             p1.themeParkID.toString(),
                             p1.themeParkName,
                             BigDecimal(p1.adultPrice).setScale(2, RoundingMode.HALF_EVEN).toString(),
-                            BigDecimal(p1.childPrice).setScale(2, RoundingMode.HALF_EVEN).toString()
+                            BigDecimal(p1.childPrice).setScale(2, RoundingMode.HALF_EVEN).toString(),
+                            p1.staffID
                         )
                     )
                 }
