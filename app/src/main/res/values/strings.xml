@@ -24,4 +24,26 @@
     <string name="ticket">Ticket</string>
     <string name="meal">Meal</string>
     <string name="child_ticket">Child Ticket</string>
+    <string name="no_order">No order</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="account">Account</string>
+    <string name="password">Password</string>
+    <string name="pay">Pay</string>
+    <string name="online_banking">Online Banking</string>
+    <string name="visa_card">Visa Card</string>
+    <string name="name_on_card">Name on card</string>
+    <string name="card_number">Card number</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="cvc">CVC</string>
+    <string name="user_info">User Info</string>
+    <string name="transaction">Transaction</string>
+    <string name="go"><![CDATA[>]]></string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="logout">Logout</string>
+    <string name="version">Version 1.2.13 (220420)</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="retype_new_password">Retype New Password</string>
+    <string name="password_must_be_minimum_8_chaacter">Password must be minimum 8 chaacter</string>
 </resources>

@@ -113,16 +113,31 @@
             app:argType="string" />
         <action
             android:id="@+id/action_orderFragment_to_paymentFragment"
-            app:destination="@id/paymentFragment"
+            app:destination="@id/cartFragment"
             app:popUpTo="@id/orderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.ezplay.buyer.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="count"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_cartFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.example.ezplay.buyer.PaymentFragment"
-        android:label="PaymentFragment"
+        android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
         <argument
-            android:name="count"
-            app:argType="integer" />
+            android:name="paymentMethod"
+            app:argType="string" />
+        <argument
+            android:name="totalAmount"
+            app:argType="string" />
     </fragment>
 </navigation>

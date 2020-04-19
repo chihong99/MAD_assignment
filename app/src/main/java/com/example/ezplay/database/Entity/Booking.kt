@@ -5,8 +5,9 @@ class Booking(
     val bookingDate: String,
     val adultTicketQuantity: Int,
     val childTicketQuantity: Int,
+    val mealListID: Int,
     val themeParkID: Int,
     val userID: String
 ) {
-    constructor(): this(0,"",0,0,0,"")
+    constructor(): this(0,"",0,0,0,0,"")
 }

@@ -2,7 +2,6 @@ package com.example.ezplay.database.Adapter
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.math.BigDecimal
 import java.math.RoundingMode
-
 
 class CartAdapter(val ctx: Context, val layoutResID: Int, val cartList: List<Cart>)
     : ArrayAdapter<Cart>(ctx, layoutResID, cartList){

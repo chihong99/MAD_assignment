@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ezplay.buyer.CartFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cartConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include android:id="@+id/custom_navbar" layout="@layout/user_navbar" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/paymentLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payment_method"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/paymentMethodCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundColor">
+                    <LinearLayout
+                        android:id="@+id/paymentMethodContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBar"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <RadioGroup
+                            android:id="@+id/paymentMethodRadioBtn"
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
+                            android:checkedButton="@id/onlineBankingButton"
+                            android:orientation="vertical">
+                            <RadioButton
+                                android:id="@+id/onlineBankingButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Online Banking"
+                                android:textSize="16dp" />
+                            <RadioButton
+                                android:id="@+id/visaCardButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Visa Card"
+                                android:textSize="16dp" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/ticket"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/adultTicketCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundColor">
+
+                    <LinearLayout
+                        android:id="@+id/adultTicketContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBar"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/minusAdultTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="3dp"
+                            android:text="-"
+                            android:textColor="@color/redColor"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:id="@+id/adultTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center_vertical"
+                            android:text="1"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/plusAdultTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="+"
+                            android:textColor="@color/redColor"
+                            android:textSize="28sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/adultTicketText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="@string/adult_ticket"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/adultTicketPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|end"
+                                android:text="RM 0.00"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/childTicketCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/backgroundColor">
+
+                    <LinearLayout
+                        android:id="@+id/childTicketContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBar"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/minusChildTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="3dp"
+                            android:text="-"
+                            android:textColor="@color/redColor"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:id="@+id/childTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center_vertical"
+                            android:text="1"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/plusChildTicketQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="+"
+                            android:textColor="@color/redColor"
+                            android:textSize="28sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/childTicketText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="15dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="@string/child_ticket"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/childTicketPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical|end"
+                                android:text="RM 0.00"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/meal"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/cartListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/emptyOrderCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/backgroundColor">
+                    <LinearLayout
+                        android:id="@+id/emptyOrderContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorBar"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/no_order"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/totalAmountCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/backgroundColor"
+            app:layout_constraintBottom_toBottomOf="@+id/custom_navbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/custom_navbar"
+            app:layout_constraintVertical_bias="1.0">
+            <RelativeLayout
+                android:id="@+id/totalAmountContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/redColor"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <TextView
+                    android:id="@+id/paynowTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center"
+                    android:text="Pay"
+                    android:textColor="@color/colorBar"
+                    android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/totalAmountPriceTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|end"
+                    android:text="RM 0.00"
+                    android:textColor="@color/colorBar"
+                    android:textSize="18dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
