@@ -68,7 +68,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.transaction.setOnClickListener {
-
+            view?.findNavController()?.navigate(SettingsFragmentDirections.actionSettingsStaffFragmentToTransactionHistoryFragment())
         }
 
         binding.logoutBtn.setOnClickListener {

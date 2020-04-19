@@ -1,0 +1,28 @@
+package com.example.ezplay.buyer
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import com.example.ezplay.R
+import com.example.ezplay.databinding.FragmentTransactionHistoryBinding
+import kotlinx.android.synthetic.main.user_navbar.view.*
+
+class TransactionHistoryFragment : Fragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding = DataBindingUtil.inflate<FragmentTransactionHistoryBinding>(inflater,
+            R.layout.fragment_transaction_history,container,false)
+        binding.customNavbar.back.setOnClickListener {
+            view?.findNavController()?.popBackStack() }
+        binding.customNavbar.userNavbar.visibility = View.GONE
+        binding.customNavbar.sellerNavbar.visibility = View.GONE
+
+        return binding.root
+    }
+
+}
