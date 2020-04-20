@@ -11,5 +11,212 @@
 
         <include android:id="@+id/custom_navbar" layout="@layout/user_navbar" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="Theme Park Name"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/themeparkImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/upload_image" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/booking_info"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bookingCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/historyCardView">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/historyRelativeLayout">
+                        <TextView
+                            android:id="@+id/bookingdateText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/booking_date"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/bookingdateTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="dd-mm-yyyy"
+                            android:textSize="18dp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/adultTicketCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/historyCardView">
+                    <RelativeLayout
+                        android:id="@+id/adultTicketContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/historyRelativeLayout">
+                        <TextView
+                            android:id="@+id/adultTicketText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="Adult Ticket x0"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/adultTicketPriceTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="RM 0.00"
+                            android:textSize="18dp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/childTicketCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/historyCardView">
+                    <RelativeLayout
+                        android:id="@+id/childTicketContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/historyRelativeLayout">
+                        <TextView
+                            android:id="@+id/childTicketText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="Child Ticket x0"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/childTicketPriceTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="RM 0.00"
+                            android:textSize="18dp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/meal_order"
+                    android:textColor="@color/colorBar"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/mealOrderListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/emptyOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    style="@style/historyCardView">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/historyRelativeLayout">
+                        <TextView
+                            android:id="@+id/noorderText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/no_order"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/nopriceText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="Rm 0.00"
+                            android:textSize="18dp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/totalCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    style="@style/historyCardView">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/historyRelativeLayout">
+                        <TextView
+                            android:id="@+id/totalamount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/total_amount"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/totalAmountText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|end"
+                            android:text="RM 0.00"
+                            android:textSize="18dp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

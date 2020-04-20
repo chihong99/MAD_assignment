@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mealorderlist"
+    style="@style/historyRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/colorBar"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/mealNameAndQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Meal Name x0"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/mealprice"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
+        android:text="RM 0.00"
+        android:textSize="18dp" />
+</LinearLayout>

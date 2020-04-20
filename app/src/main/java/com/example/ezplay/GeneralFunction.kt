@@ -23,4 +23,4 @@ class ThemeParkViewHolder(var themeparkView: View): RecyclerView.ViewHolder(them
 
 class MealViewHolder(var mealView: View): RecyclerView.ViewHolder(mealView) {}
 
-class CartViewHolder(var cartView: View): RecyclerView.ViewHolder(cartView) {}
+class PaymentViewHolder(var paymentView: View): RecyclerView.ViewHolder(paymentView) {}

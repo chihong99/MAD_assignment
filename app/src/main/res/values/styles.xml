@@ -23,4 +23,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="historyRelativeLayout">
+        <item name="android:paddingStart">3dp</item>
+        <item name="android:paddingEnd">3dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@color/colorBar</item>
+    </style>
+
+    <style name="historyCardView">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:background">@color/backgroundColor</item>
+    </style>
+
 </resources>

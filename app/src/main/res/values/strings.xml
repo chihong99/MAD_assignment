@@ -46,4 +46,5 @@
     <string name="new_password">New Password</string>
     <string name="retype_new_password">Retype New Password</string>
     <string name="password_must_be_minimum_8_chaacter">Password must be minimum 8 chaacter</string>
+    <string name="booking_info">Booking Info</string>
 </resources>
