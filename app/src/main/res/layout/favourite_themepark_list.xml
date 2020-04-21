@@ -8,7 +8,8 @@
     android:layout_height="wrap_content"
     android:background="@color/colorBar"
     android:layout_margin="10dp"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:visibility="gone">
 
     <ImageView
         android:id="@+id/themeparkImageView"
@@ -16,7 +17,8 @@
         android:layout_height="82dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/upload_image" />
+        app:srcCompat="@drawable/upload_image"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/themeparkNameTextView"
@@ -30,6 +32,7 @@
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toEndOf="@+id/themeparkImageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="gone"/>
 
 </LinearLayout>

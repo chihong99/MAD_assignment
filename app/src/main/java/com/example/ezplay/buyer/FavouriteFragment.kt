@@ -79,6 +79,9 @@ class FavouriteFragment : Fragment() {
             override fun populateViewHolder(viewHolder: ThemeParkViewHolder, model: ThemePark?, position: Int) {
                 if (recordsList.isNotEmpty()) {
                     if (recordsList.remove(model?.themeParkID?.toLong())) {
+                        viewHolder.themeparkView.listContent.visibility = View.VISIBLE
+                        viewHolder.themeparkView.themeparkNameTextView.visibility = View.VISIBLE
+                        viewHolder.themeparkView.themeparkImageView.visibility = View.VISIBLE
                         Picasso.with(context).load(model?.themeParkImage).fit().centerCrop()
                             .into(viewHolder.themeparkView.themeparkImageView)
                         viewHolder.themeparkView.themeparkNameTextView.setText(model?.themeParkName)
